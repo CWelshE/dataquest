@@ -1,0 +1,39 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>djangocker coderunner</title>
+  <link type="text/css"
+        rel="stylesheet"
+        media="screen, projection"
+        href="{% static 'codeparser/stylesheets/screen.css' %}"/>
+  <script src="{% static 'codeparser/js/js.cookie.js' %}"
+          type="text/javascript">
+  </script>
+</head>
+<body>
+
+<div id="editor"></div>
+<hr>
+<form action="." method="post" id="form-runcode">
+  {% csrf_token %}
+  <input hidden type="text" value="" name="code" />
+  <input type="submit" value="Run" id="runBtn" />
+</form>
+<div id="output"></div>
+   
+<script src="{% static 'codeparser/ace-builds/src/ace.js' %}" 
+        type="text/javascript" 
+        charset="utf-8">
+</script>
+
+<script src="{% static 'codeparser/js/custom.js' %}"
+        type="text/javascript"
+        charset="utf-8">
+</script>
+
+</body>
+</html>
+
