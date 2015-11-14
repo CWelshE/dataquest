@@ -1,0 +1,49 @@
+@import "compass/reset";
+
+@mixin w-h($wh)
+{
+  width: $wh;
+  height: $wh;
+}
+
+$bg: #2e2e2e;
+
+html, body
+{
+  @include w-h(100%);
+  background: $bg;
+  display: flex;
+  flex-direction: column;
+}
+
+body
+{
+  padding: 1em;
+}
+
+#editor, #output
+{
+  @include w-h(50%);
+  margin: auto;
+}
+
+hr
+{
+  width: 100%;
+  border: 1px solid black;
+}
+
+form
+{
+  text-align: center;
+}
+
+input
+{
+  width: 50%;
+}
+
+#output
+{
+  background: #002b36;
+}
