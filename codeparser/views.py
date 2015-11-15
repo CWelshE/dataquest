@@ -4,7 +4,6 @@ from django.template.context_processors import csrf
 from django.template import loader
 
 import os
-import json
 from subprocess import check_output, CalledProcessError
 
 CODE_PATH = os.path.dirname(os.path.realpath(__file__))
