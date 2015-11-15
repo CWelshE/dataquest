@@ -10,6 +10,7 @@ $bg: #2e2e2e;
 
 html, body
 {
+  box-sizing: border-box;
   @include w-h(100%);
   background: $bg;
   display: flex;
@@ -25,6 +26,7 @@ body
 {
   @include w-h(50%);
   margin: auto;
+  box-shadow: 0 0 1px white;
 }
 
 hr
@@ -41,6 +43,8 @@ form
 input
 {
   width: 50%;
+  background: white;
+  box-shadow: 0 0 10px black inset;
 }
 
 #output
