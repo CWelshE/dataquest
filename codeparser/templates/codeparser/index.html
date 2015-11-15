@@ -18,10 +18,9 @@
 <div id="editor"></div>
 <form action="." method="post" id="form-runcode">
   {% csrf_token %}
-  <input hidden type="text" value="" name="code" />
-  <input type="submit" value="Run" id="runBtn" />
+  <input type="submit" value="RUN CODE" id="runBtn" />
 </form>
-<div id="output"></div>
+<textarea id="output"></textarea>
    
 <script src="{% static 'codeparser/ace-builds/src/ace.js' %}" 
         type="text/javascript" 

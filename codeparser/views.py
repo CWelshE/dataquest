@@ -3,8 +3,14 @@ from django.http import HttpResponse
 from django.template.context_processors import csrf
 from django.template import loader
 
+import os
 import json
-import subprocess
+from subprocess import check_output, CalledProcessError
+
+CODE_PATH = os.path.dirname(os.path.realpath(__file__))
+CONTAINER_PATH = "/src/code.py"
+
+res_path = "{!s}:{!s}".format(CODE_PATH + "/code.py", CONTAINER_PATH)
 
 def index(request):
     c = {}
@@ -13,14 +19,25 @@ def index(request):
     return render_to_response("codeparser/index.html", c)
 
 def get_code(request):
-    code_txt = request.POST.get('code')
-    response_data = {}
-    response_data['code'] = code_txt
+    try:
+        code_txt = request.POST.get('code')
+    except:
+        print "Malformed request:", request
+        return
 
-    subprocess.call(["ls", "-l"])
+    with open('codeparser/code.py', 'w') as code_:
+        code_.write(code_txt)
 
-    return HttpResponse(
-            json.dumps(response_data),
-            content_type = "application/json"
-            )
-        
+    output = ""
+    try:
+        output = check_output(["docker",
+                               "run",
+                               "-it",
+                               "-v",
+                               res_path,
+                               "cr"])
+    except CalledProcessError as e:
+        output = e.output
+        return HttpResponse(output)
+
+    return HttpResponse(output)

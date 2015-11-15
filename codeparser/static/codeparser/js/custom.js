@@ -1,6 +1,6 @@
 // ACE settings
 var editor = ace.edit("editor");
-editor.setTheme("ace/theme/monokai");
+editor.setTheme("ace/theme/ambiance");
 
 // Current Session
 var sesh = editor.getSession();
